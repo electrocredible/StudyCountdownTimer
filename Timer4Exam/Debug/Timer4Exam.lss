@@ -1,0 +1,311 @@
+
+Timer4Exam.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000017c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  0000017c  00000210  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800062  00800062  00000212  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000212  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000244  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000038  00000000  00000000  00000280  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000026b  00000000  00000000  000002b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000156  00000000  00000000  00000523  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000022f  00000000  00000000  00000679  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000068  00000000  00000000  000008a8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000001b7  00000000  00000000  00000910  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000011c  00000000  00000000  00000ac7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000028  00000000  00000000  00000be3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	3d c0       	rjmp	.+122    	; 0x8c <__vector_8>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ec e7       	ldi	r30, 0x7C	; 124
+  3a:	f1 e0       	ldi	r31, 0x01	; 1
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a2 36       	cpi	r26, 0x62	; 98
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	20 e0       	ldi	r18, 0x00	; 0
+  4a:	a2 e6       	ldi	r26, 0x62	; 98
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a4 36       	cpi	r26, 0x64	; 100
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	34 d0       	rcall	.+104    	; 0xc2 <main>
+  5a:	8e c0       	rjmp	.+284    	; 0x178 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <buzzshort>:
+#define firsttimervalue 40 //45 secs
+#define secondtimervalue 65  //65 secs
+int seconds=0;  // incremented by timer from startup
+int overflowseconds=-1;
+void buzzshort(){
+	BUZZERPORT=0xFF;
+  5e:	8f ef       	ldi	r24, 0xFF	; 255
+  60:	85 bb       	out	0x15, r24	; 21
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  62:	83 ed       	ldi	r24, 0xD3	; 211
+  64:	90 e3       	ldi	r25, 0x30	; 48
+  66:	01 97       	sbiw	r24, 0x01	; 1
+  68:	f1 f7       	brne	.-4      	; 0x66 <buzzshort+0x8>
+  6a:	00 c0       	rjmp	.+0      	; 0x6c <buzzshort+0xe>
+  6c:	00 00       	nop
+	_delay_ms(50);
+	BUZZERPORT=0x00;
+  6e:	15 ba       	out	0x15, r1	; 21
+  70:	08 95       	ret
+
+00000072 <buzzlong>:
+}
+void buzzlong(){
+	BUZZERPORT=0xFF;
+  72:	8f ef       	ldi	r24, 0xFF	; 255
+  74:	85 bb       	out	0x15, r24	; 21
+  76:	2f eb       	ldi	r18, 0xBF	; 191
+  78:	84 ed       	ldi	r24, 0xD4	; 212
+  7a:	91 e0       	ldi	r25, 0x01	; 1
+  7c:	21 50       	subi	r18, 0x01	; 1
+  7e:	80 40       	sbci	r24, 0x00	; 0
+  80:	90 40       	sbci	r25, 0x00	; 0
+  82:	e1 f7       	brne	.-8      	; 0x7c <buzzlong+0xa>
+  84:	00 c0       	rjmp	.+0      	; 0x86 <buzzlong+0x14>
+  86:	00 00       	nop
+	_delay_ms(600);
+	BUZZERPORT=0x00;
+  88:	15 ba       	out	0x15, r1	; 21
+  8a:	08 95       	ret
+
+0000008c <__vector_8>:
+}
+ISR(TIMER1_OVF_vect)
+{	
+  8c:	1f 92       	push	r1
+  8e:	0f 92       	push	r0
+  90:	0f b6       	in	r0, 0x3f	; 63
+  92:	0f 92       	push	r0
+  94:	11 24       	eor	r1, r1
+  96:	8f 93       	push	r24
+  98:	9f 93       	push	r25
+	seconds++;
+  9a:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__data_end>
+  9e:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__data_end+0x1>
+  a2:	01 96       	adiw	r24, 0x01	; 1
+  a4:	90 93 63 00 	sts	0x0063, r25	; 0x800063 <__data_end+0x1>
+  a8:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <__data_end>
+	TCNT1H=(-977)>>8;
+  ac:	8c ef       	ldi	r24, 0xFC	; 252
+  ae:	8d bd       	out	0x2d, r24	; 45
+	TCNT1L=(-977)&0xFF;	
+  b0:	8f e2       	ldi	r24, 0x2F	; 47
+  b2:	8c bd       	out	0x2c, r24	; 44
+}
+  b4:	9f 91       	pop	r25
+  b6:	8f 91       	pop	r24
+  b8:	0f 90       	pop	r0
+  ba:	0f be       	out	0x3f, r0	; 63
+  bc:	0f 90       	pop	r0
+  be:	1f 90       	pop	r1
+  c0:	18 95       	reti
+
+000000c2 <main>:
+int main(void)
+{
+	BUZZERDDR=0xFF;
+  c2:	8f ef       	ldi	r24, 0xFF	; 255
+  c4:	84 bb       	out	0x14, r24	; 20
+	INDDR=0x00;
+  c6:	17 ba       	out	0x17, r1	; 23
+	INPORT=0xFF;
+  c8:	88 bb       	out	0x18, r24	; 24
+	buzzshort();
+  ca:	c9 df       	rcall	.-110    	; 0x5e <buzzshort>
+	TCNT1H=(-977)>>8;
+  cc:	8c ef       	ldi	r24, 0xFC	; 252
+  ce:	8d bd       	out	0x2d, r24	; 45
+	TCNT1L=(-977)&0xFF;// over flow after 977 clocks__works for 1MHZ clock,[1/1000000x1024x977=1 second]
+  d0:	8f e2       	ldi	r24, 0x2F	; 47
+  d2:	8c bd       	out	0x2c, r24	; 44
+	TCCR1A=0x00;//normal mode
+  d4:	1f bc       	out	0x2f, r1	; 47
+	TCCR1B=0x05;//internal clock ,prescaler 1:1024
+  d6:	85 e0       	ldi	r24, 0x05	; 5
+  d8:	8e bd       	out	0x2e, r24	; 46
+	TIMSK=(1<<TOIE1);// enable timer1 interrupt
+  da:	84 e0       	ldi	r24, 0x04	; 4
+  dc:	89 bf       	out	0x39, r24	; 57
+	sei();
+  de:	78 94       	sei
+		if(seconds==overflowseconds){
+			buzzlong();
+		}
+		if((seconds-overflowseconds)>600) // if device not used for more than 1 hour, sound alarm to switch off the device
+		{
+			cli();
+  e0:	00 ed       	ldi	r16, 0xD0	; 208
+  e2:	17 e0       	ldi	r17, 0x07	; 7
+	TCCR1B=0x05;//internal clock ,prescaler 1:1024
+	TIMSK=(1<<TOIE1);// enable timer1 interrupt
+	sei();
+    while (1) 
+    {
+		if(!(INPIN&(1<<switch1pin)))
+  e4:	b0 99       	sbic	0x16, 0	; 22
+  e6:	12 c0       	rjmp	.+36     	; 0x10c <main+0x4a>
+  e8:	83 ed       	ldi	r24, 0xD3	; 211
+  ea:	90 e3       	ldi	r25, 0x30	; 48
+  ec:	01 97       	sbiw	r24, 0x01	; 1
+  ee:	f1 f7       	brne	.-4      	; 0xec <main+0x2a>
+  f0:	00 c0       	rjmp	.+0      	; 0xf2 <main+0x30>
+  f2:	00 00       	nop
+		{
+			_delay_ms(50);//debounce
+			if(!(INPIN&(1<<switch1pin)))
+  f4:	b0 99       	sbic	0x16, 0	; 22
+  f6:	0a c0       	rjmp	.+20     	; 0x10c <main+0x4a>
+			{
+				buzzshort();
+  f8:	b2 df       	rcall	.-156    	; 0x5e <buzzshort>
+				overflowseconds=seconds+firsttimervalue;
+  fa:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__data_end>
+  fe:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__data_end+0x1>
+ 102:	88 96       	adiw	r24, 0x28	; 40
+ 104:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__data_start+0x1>
+ 108:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+			}
+		}
+		if(!(INPIN&(1<<switch2pin)))
+ 10c:	b1 99       	sbic	0x16, 1	; 22
+ 10e:	13 c0       	rjmp	.+38     	; 0x136 <main+0x74>
+ 110:	83 ed       	ldi	r24, 0xD3	; 211
+ 112:	90 e3       	ldi	r25, 0x30	; 48
+ 114:	01 97       	sbiw	r24, 0x01	; 1
+ 116:	f1 f7       	brne	.-4      	; 0x114 <main+0x52>
+ 118:	00 c0       	rjmp	.+0      	; 0x11a <main+0x58>
+ 11a:	00 00       	nop
+		{
+			_delay_ms(50);//debounce
+			if(!(INPIN&(1<<switch2pin)))
+ 11c:	b1 99       	sbic	0x16, 1	; 22
+ 11e:	0b c0       	rjmp	.+22     	; 0x136 <main+0x74>
+			{
+				buzzshort();
+ 120:	9e df       	rcall	.-196    	; 0x5e <buzzshort>
+				overflowseconds=seconds+secondtimervalue;
+ 122:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__data_end>
+ 126:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__data_end+0x1>
+ 12a:	8f 5b       	subi	r24, 0xBF	; 191
+ 12c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 12e:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__data_start+0x1>
+ 132:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+			}
+		}
+		if(seconds==overflowseconds){
+ 136:	20 91 62 00 	lds	r18, 0x0062	; 0x800062 <__data_end>
+ 13a:	30 91 63 00 	lds	r19, 0x0063	; 0x800063 <__data_end+0x1>
+ 13e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+ 142:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__data_start+0x1>
+ 146:	28 17       	cp	r18, r24
+ 148:	39 07       	cpc	r19, r25
+ 14a:	09 f4       	brne	.+2      	; 0x14e <main+0x8c>
+			buzzlong();
+ 14c:	92 df       	rcall	.-220    	; 0x72 <buzzlong>
+		}
+		if((seconds-overflowseconds)>600) // if device not used for more than 1 hour, sound alarm to switch off the device
+ 14e:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__data_end>
+ 152:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__data_end+0x1>
+ 156:	20 91 60 00 	lds	r18, 0x0060	; 0x800060 <__data_start>
+ 15a:	30 91 61 00 	lds	r19, 0x0061	; 0x800061 <__data_start+0x1>
+ 15e:	82 1b       	sub	r24, r18
+ 160:	93 0b       	sbc	r25, r19
+ 162:	89 35       	cpi	r24, 0x59	; 89
+ 164:	92 40       	sbci	r25, 0x02	; 2
+ 166:	0c f4       	brge	.+2      	; 0x16a <main+0xa8>
+ 168:	bd cf       	rjmp	.-134    	; 0xe4 <main+0x22>
+		{
+			cli();
+ 16a:	f8 94       	cli
+ 16c:	c0 2f       	mov	r28, r16
+ 16e:	d1 2f       	mov	r29, r17
+			for(int i=0;i<2000;i++)
+			{
+				buzzlong();
+ 170:	80 df       	rcall	.-256    	; 0x72 <buzzlong>
+ 172:	21 97       	sbiw	r28, 0x01	; 1
+			buzzlong();
+		}
+		if((seconds-overflowseconds)>600) // if device not used for more than 1 hour, sound alarm to switch off the device
+		{
+			cli();
+			for(int i=0;i<2000;i++)
+ 174:	e9 f7       	brne	.-6      	; 0x170 <main+0xae>
+ 176:	b6 cf       	rjmp	.-148    	; 0xe4 <main+0x22>
+
+00000178 <_exit>:
+ 178:	f8 94       	cli
+
+0000017a <__stop_program>:
+ 17a:	ff cf       	rjmp	.-2      	; 0x17a <__stop_program>
